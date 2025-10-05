@@ -221,10 +221,12 @@ header {
   }
 
   .menu-item-name {
-    width: 100%;
-    margin-left: 0;
-    text-align: center; /* 名前を中央寄せにしてみる */
-    font-size: 14px;    /* 必要に応じて調整 */
+    width: 100%;         /* 横幅100%に */
+    margin-left: 0;      /* 左マージンなしに */
+    max-width: 100%;     /* 最大幅も親要素に合わせる */
+    height: auto;        /* 高さ自動調整 */
+    object-fit: contain; /* 画像の縦横比を保つ */
+    text-align: center;  /* 中央寄せ */
   }
 }
 
