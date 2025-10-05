@@ -146,7 +146,7 @@ header {
 .main-img {
   display: block;
   margin: 60px auto 0 auto;
-  width: clamp(320px, 50%, 800px);
+  width: clamp(320px, 80%, 800px);
   max-width: 100%;
   height: auto;
   opacity: 0;
