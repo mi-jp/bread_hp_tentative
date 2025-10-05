@@ -206,14 +206,14 @@ header {
   .menu-items {
     grid-template-columns: repeat(3, 1fr);
     max-width: 100%;
-    padding: 0 5px; /* 左右パディングをまとめて指定 */
+    padding: 0 5px;
     gap: 10px;
-    box-sizing: border-box; /* パディング込みで幅計算 */
+    box-sizing: border-box;
   }
 
   .menu-link {
     width: 100%;
-    padding: 0; /* 余計なパディングは外す */
+    padding: 0;
     box-sizing: border-box;
   }
 
@@ -225,14 +225,14 @@ header {
 
   .menu-item-name {
     width: 100%;
-    margin-left: 0;
-    padding: 0 5px; /* 余白は内側で調整 */
+    margin-left: -5px; /* ここをマイナスにして調節 */
+    padding: 0 5px;
     max-width: 100%;
     box-sizing: border-box;
     text-align: center;
-    white-space: nowrap; /* テキスト折り返したくなければ */
-    overflow: hidden;   /* はみ出し防止 */
-    text-overflow: ellipsis; /* はみ出すテキストは「...」で省略 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
