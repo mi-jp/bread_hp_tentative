@@ -176,7 +176,7 @@ header {
   margin-top: 50px;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 1.5s ease, transform 1.5s ease;
   scroll-margin-top: unset;
 }
 
