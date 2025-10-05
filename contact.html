@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>お問い合わせ - Your Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+  <header>
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-logo-link">
+      <img src="images/logo.png" alt="logo" class="nav-logo">    
+    </a>
+
+    <div class="nav-menu">
+      <a href="index.html" class="">home</a>
+      <a href="index.html#menu" id="menu-link">menu</a>
+      <a href="index.html#info">access</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <a href="#" class="header-link">
+    <div class="header-image-wrapper">
+      <img src="images/header01.png" alt="ヘッダー画像" class="header-image">
+    </div>
+  </a>
+</header>
+
+  <main class="contact-page">
+    <section class="contact-section">
+      <h2>お問い合わせフォーム</h2>
+           <p class="sub-note">(架空サイトなので機能してません)</p>
+      <form action="" method="POST" class="contact-form">
+        <label for="name">お名前：</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">メールアドレス：</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">メッセージ：</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">送信</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>
