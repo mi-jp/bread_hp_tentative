@@ -103,9 +103,10 @@ main {
 
 @media (max-width: 768px) {
   .nav-logo {
-    margin-left: -10px; /* 縮小画面は小さく調整 */
+    margin-left: -10px; 
     top: -3px;          /* 上に5px移動 */
     position: relative; 
+    width: 80px;
   }
 
 }
@@ -114,7 +115,7 @@ main {
   display: flex;
   gap: 30px; /* リンク同士の間隔 */
   margin-left: auto;  /* ロゴの右側に配置 */
-  padding-right: 5%;  /* 画面サイズに応じて右寄せ具合を調整 */
+  padding-right: 5%; /
 }
 
 .nav-menu a {
@@ -125,19 +126,20 @@ main {
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
-    padding-right: 2%;
-    gap: 20px;
-    font-size: 18px;
+  .nav-menu a {
+    font-size: 14px;   
+    margin-left: 8px;  
   }
 
-  .nav-menu a {
-    font-size: 20px;
+   .nav-menu {
+    gap: 8px;
+    position: relative;
+    right: -20px; 
   }
 }
 
 .nav-menu a:first-child {
-  margin-left: 0; /* 最初のリンクだけ左マージンなしで左端に寄せる */
+  margin-left: 0;
 }
 
 .main-text {
