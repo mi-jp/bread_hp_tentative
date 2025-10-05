@@ -203,12 +203,12 @@ header {
 }
 
 @media (max-width: 480px) {
-  .menu-items {
-    grid-template-columns: repeat(3, 1fr);
+    .menu-items {
     max-width: 100%;
-    padding: 0 5px;
-    gap: 10px;
+    padding: 0 10px; /* paddingを少し増やしてみる */
+    gap: 8px;        /* gapも調整 */
     box-sizing: border-box;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .menu-link {
@@ -224,15 +224,15 @@ header {
   }
 
   .menu-item-name {
-    width: 100%;
-    margin-left: -20px; /* ここをマイナスにして調節 */
-    padding: 0 5px;
+    width: 100% !important; /* !importantでPC用の幅を上書き */
+    margin-left: 0 !important; /* マージンは0に */
+    padding: 0 8px;
     max-width: 100%;
     box-sizing: border-box;
-    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
   }
 }
 
