@@ -303,18 +303,42 @@ top: 38px;
 
 @media (max-width: 768px) {
   .menu-item-img.kurowassan {
-    width: 170px;
-    top: 10px;    
+    width: 140px; 
+    top: 8px;     
   }
 
   .menu-link .bagel {
-    width: 80%;   
-    left: 5px;    
+    width: 70%;  
+    left: 3px;    
+    top: 6px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 799.5px) {
+  .menu-item-img.kurowassan {
+    width: 220px;
+    top: 10px;
+  }
+
+  .menu-link .bagel {
+    width: 85%;
+    left: 5px;
     top: 8px;
   }
 }
 
+@media (max-width: 375px) {
+  .menu-item-img.kurowassan {
+    width: 130px;  
+    top: 6px;
+  }
 
+  .menu-link .bagel {
+    width: 80%;    
+    left: 2px;
+    top: 4px;
+  }
+}
 
 
 
