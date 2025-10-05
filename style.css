@@ -194,24 +194,23 @@ header {
 
 /* メニューアイテムのグリッド */
 .menu-items {
-   overflow-x: hidden;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-gap: 20px;
   max-width: 660px;
   margin: 0 auto;
-  padding: 0 10px; /* 追加: 画面端の余白を確保 */
+  padding: 0 10px;
 }
 
 @media (max-width: 480px) {
   .menu-items {
-    grid-template-columns: 1fr;
-    padding-left: 15px;  /* 画面端の余白 */
-    padding-right: 15px;
-    box-sizing: border-box;
+    grid-template-columns: repeat(3, minmax(80px, 1fr)); /* 3列のまま */
+    padding-left: 10px;
+    padding-right: 10px;
     max-width: 100%;
-    width: 100%;
   }
+
+  
   .menu-item-img {
     width: 100%;    /* 画像は親の幅いっぱいに */
     max-width: 100%;
