@@ -1,0 +1,529 @@
+        body{
+            font-family: "Zen Maru Gothic", sans-serif;
+
+            background-image: url("images/background.png");
+            background-position: center;
+            background-size: cover;
+            width: auto;
+
+
+
+        }
+
+       header {
+  position: relative;
+  width: 100%;
+}
+
+.header-image-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 13vh; /* 画面高さの13% */
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.header-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 1; /* h1内の高さの余白も削減 */
+}
+
+main {
+  padding-top: 300px; /* ヘッダー画像の高さ分余白を上に */
+}
+
+    
+.header-link {
+  display: inline-block;  /* リンクのサイズを画像に合わせやすく */
+  padding: 0;
+  margin: 0;
+  line-height: 0;         /* 画像の下の空白を消す */
+  width: auto;
+}
+
+/* ナビゲーション */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 50%;                  /* 画面中央を基準に */
+  transform: translateX(-65%); /* 中央(-50%)より少し右寄せ(-40%) */
+  width: 1200px;              /* 固定幅 */
+  padding: 20px 40px;
+  box-sizing: border-box;
+  z-index: 2000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 画面が狭い時の対応 */
+@media (max-width: 768px) {
+  .nav-bar {
+    left: 0;
+    transform: none;
+    width: 100%;
+    padding: 20px 20px;
+  }
+}
+
+
+
+.header-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+    /*余白リセット*/
+    *{
+        margin: 0;
+        padding: 0;
+
+    }
+
+
+.nav-logo {
+  width: 120px;
+  height: auto;
+  margin-top: 9px;
+  margin-left: 350px; /* 最大画面用 */
+  position: relative;  
+  top: -1px;          /* ← 上に1px移動 */
+}
+
+@media (max-width: 768px) {
+  .nav-logo {
+    margin-left: -10px; /* 縮小画面は小さく調整 */
+    top: -3px;          /* 上に5px移動 */
+    position: relative; 
+  }
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px; /* リンク同士の間隔 */
+  margin-left: auto;  /* ロゴの右側に配置 */
+  padding-right: 5%;  /* 画面サイズに応じて右寄せ具合を調整 */
+}
+
+.nav-menu a {
+  font-size: 30px;
+  margin-left: 10px; 
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    padding-right: 2%;
+    gap: 20px;
+    font-size: 18px;
+  }
+
+  .nav-menu a {
+    font-size: 20px;
+  }
+}
+
+.nav-menu a:first-child {
+  margin-left: 0; /* 最初のリンクだけ左マージンなしで左端に寄せる */
+}
+
+.main-text {
+  opacity: 0;
+  transform: translateY(-60px);
+  transition: opacity 1s ease, transform 1s ease;
+  width: 40%;
+  margin-left: 30%;
+  margin-top: -30px;  /* 追加：上に詰める */
+}
+
+@media (max-width: 768px) {
+  .main-text {
+    width: 90%;        /* 幅を広げる */
+    margin-left: 5%;  /* 中央寄せしやすく */
+    margin-top: -20px; /* 必要に応じて調整 */
+  }
+
+  .main-img {
+    width: 950;        /* 幅を広げる */
+    margin: 30px auto 0 auto; /* 中央寄せはそのまま */
+  }
+}
+
+
+.main-text.animate {
+  opacity: 1;
+  transform: translateY(-90px);
+}
+
+
+
+.main-img {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 40%;
+  max-width: 100%; /* 幅が画面よりはみ出ないように */
+  height: auto;
+
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+@media (max-width: 768px) {
+  .main-img {
+    width: 100%;
+    max-width: 100%; 
+  }
+}
+
+.main-img.animate {
+  opacity: 1;
+  transform: translateY(-90px);
+}
+
+
+       @keyframes fadeInUp{
+        to{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+
+    }
+
+
+
+    .menu-section{
+        padding-top: 0;
+        text-align: center;
+        margin-top: 50px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        scroll-margin-top: unset;
+    }
+
+
+    .menu-section.show{
+        opacity: 1;
+        transform:  translateY(0);
+
+
+
+    }
+
+
+    .menu-title-img{
+        width: 300px;
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.menu-item-img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  transform-origin: center center;
+  position: static;
+  top: auto;
+  left: auto;
+
+}
+
+
+
+.menu-item-img.anpan {
+  width: 105%;
+  top: 0;
+  height: auto;
+  position: relative;
+}
+
+.menu-item-img.kurowassan {
+  width: 230px;
+  top: 17px;
+  position: relative;
+}
+
+.menu-item-img.kurumipan {
+  width: 96%;
+  top: 13px;
+  position: relative;
+}
+
+.menu-link .bagel {
+width: 90%;
+left: 13px;
+
+top: 13px;
+}
+
+
+
+.menu-link .Francepan{
+    width: 108%;
+top: 50px;
+
+
+}
+
+
+.menu-link .creampan{
+top: 38px;
+
+
+
+}
+
+@media (max-width: 768px) {
+  .menu-item-img.kurowassan {
+    width: 170px;
+    top: 10px;    
+  }
+
+  .menu-link .bagel {
+    width: 80%;   
+    left: 5px;    
+    top: 8px;
+  }
+}
+
+
+
+
+
+
+.menu-link:hover .menu-item-img{
+transform: scale(1.08); /*1.8倍に拡大*/
+
+
+
+
+}
+
+
+.menu-link {
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+
+
+   .shop-info-section{
+    width: 50%;
+    max-width: 490px;
+    margin: 100px auto 20px auto;
+    padding: 20px;
+
+
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.6;
+
+}
+
+   .shop-info-section h2{
+    display: block;
+    text-align: center;
+    margin:  0 0 10px auto;
+
+   }
+
+   .shop-info-section p{
+    display: flex;
+    width: 60%;
+    margin: 16px auto;
+
+
+   }
+   
+   .shop-info-section .label {
+    width: 80px;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: left;
+   }
+
+   .shop-info-section .value {
+    flex: 1;
+    text-align: left;
+   }
+
+
+   .footer{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+   }
+
+.shop-info-section {
+  width: 50%;
+  max-width: 490px;
+  margin: 100px auto 20px auto;
+  padding: 20px;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+@media (max-width: 768px) {
+  .shop-info-section {
+    width: 90%;        
+    max-width: none;   
+    margin: 50px auto 20px auto; 
+    padding: 15px;     
+  }
+}
+
+.shop-info-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+   .footer-bg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+   }
+
+
+   .footer-overlay{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: white;
+     font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 16px;
+     pointer-events: auto; 
+
+   }
+
+   .footer-logo{
+    width: 150px;
+    height: auto;
+
+
+
+
+
+   }
+
+
+   /* お問い合わせページ全体 */
+.contact-page {
+  padding: 100px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+/* セクション全体 */
+.contact-section {
+  max-width: 600px;
+  margin: 80px auto 0 auto; /* 上:80px、左右:自動（中央寄せ）、下:0 */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* セクションタイトル */
+.contact-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* フォーム全体 */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ラベル（項目名） */
+.contact-form label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* 入力欄（名前メール） */
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* テキストエリア */
+.contact-form textarea {
+  resize: vertical;
+}
+
+/* 送信ボタン */
+.contact-form button {
+  padding: 12px;
+  font-size: 18px;
+  background-color: #a67c52;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #8c643e;
+}
+
+.sub-note {
+  font-size: 14px;
+  color: #555;       
+  text-align: center;
+  margin-top: -10px; /* h2との間を詰める */
+}
