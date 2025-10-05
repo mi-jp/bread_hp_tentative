@@ -196,12 +196,36 @@ header {
 .menu-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 800px;
+  grid-gap: 20px;
+  max-width: 660px;
   margin: 0 auto;
-  justify-items: center;
-  align-items: stretch; /* 縦方向の均一化 */
+  padding: 0 10px; /* 追加: 画面端の余白を確保 */
 }
+
+@media (max-width: 768px) {
+  .menu-items {
+    grid-template-columns: repeat(2, 1fr); /* 2列表示に切替え */
+    max-width: 100%;
+    padding: 0 15px; /* スマホは左右の余白確保 */
+    box-sizing: border-box; /* パディング込みで幅調整 */
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-items {
+    grid-template-columns: 1fr; /* 1列表示 */
+    padding: 0 10px;
+  }
+}
+
+
+.menu-item-img,
+.menu-item-name {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .menu-item-name {
   width: 150px;
@@ -209,7 +233,18 @@ header {
   object-fit: contain;
   display: block;
   margin-top: 10px;
+  margin-left: 25px;      /* 右にずらす */
 }
+
+/*クロワッサンの名前だけ画像が小さいので、少し大きくする設定*/
+.menu-item-name.kurowassan-name {
+  width: 180px;
+  height: auto;
+  margin-top: 30px; /* 下にスペースを作る */
+  margin-left: 8px;
+}
+
+
 
 /* メニューアイテム画像 */
 .menu-item-img {
@@ -222,19 +257,16 @@ header {
 
 
 /* ホバーで拡大 */
+.menu-link {
+  display: inline-block;
+  width: 100%;
+  overflow: visible; /* ここを追加 */
+}
+
 .menu-link:hover .menu-item-img {
   transform: scale(1.08);
+  transition: transform 0.3s ease;
 }
-
-.menu-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; /* 画像と名前の間隔を自動調整 */
-  height: 100%;
-  text-align: center;
-}
-
 
 /* ショップ情報セクション */
 .shop-info-section {
