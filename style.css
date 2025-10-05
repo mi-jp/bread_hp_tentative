@@ -194,6 +194,7 @@ header {
 
 /* メニューアイテムのグリッド */
 .menu-items {
+   overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -213,6 +214,14 @@ header {
   }
   .menu-item-img {
     width: 100%;    /* 画像は親の幅いっぱいに */
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item-name {
+    margin-left: 0;
+    width: 100%;
     max-width: 100%;
   }
 }
@@ -259,7 +268,7 @@ header {
 .menu-link {
   display: inline-block;
   width: 100%;
-  overflow: visible; /* ここを追加 */
+   overflow: hidden;
 }
 
 .menu-link:hover .menu-item-img {
