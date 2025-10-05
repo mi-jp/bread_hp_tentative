@@ -223,15 +223,10 @@ header {
     object-fit: contain;
   }
 
-  .menu-item-name {
-    width: 100% !important; /* !importantでPC用の幅を上書き */
-    margin-left: 0 !important; /* マージンは0に */
+ .menu-item-name {
+    width: 100% !important;
+    margin-left: 0 !important; 
     padding: 0 8px;
-    max-width: 100%;
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: center;
   }
 }
