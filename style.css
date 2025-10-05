@@ -202,19 +202,18 @@ header {
   padding: 0 10px; /* 追加: 画面端の余白を確保 */
 }
 
-@media (max-width: 768px) {
-  .menu-items {
-    grid-template-columns: repeat(2, 1fr); /* 2列表示に切替え */
-    max-width: 100%;
-    padding: 0 15px; /* スマホは左右の余白確保 */
-    box-sizing: border-box; /* パディング込みで幅調整 */
-  }
-}
-
 @media (max-width: 480px) {
   .menu-items {
-    grid-template-columns: 1fr; /* 1列表示 */
-    padding: 0 10px;
+    grid-template-columns: 1fr;
+    padding-left: 15px;  /* 画面端の余白 */
+    padding-right: 15px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+  }
+  .menu-item-img {
+    width: 100%;    /* 画像は親の幅いっぱいに */
+    max-width: 100%;
   }
 }
 
