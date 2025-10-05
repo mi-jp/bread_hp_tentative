@@ -107,6 +107,7 @@ main {
     top: -3px;          /* 上に5px移動 */
     position: relative; 
   }
+
 }
 
 .nav-menu {
@@ -143,21 +144,23 @@ main {
   opacity: 0;
   transform: translateY(-60px);
   transition: opacity 1s ease, transform 1s ease;
-  width: 40%;
-  margin-left: 30%;
-  margin-top: -30px;  /* 追加：上に詰める */
+  width: clamp(300px, 40%, 600px); 
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -30px;
+  display: block;
 }
 
 @media (max-width: 768px) {
   .main-text {
-    width: 90%;        /* 幅を広げる */
-    margin-left: 5%;  /* 中央寄せしやすく */
-    margin-top: -20px; /* 必要に応じて調整 */
+    width: clamp(240px, 90%, 500px);
+    margin: 0 auto;
+    margin-top: -20px;
   }
 
   .main-img {
-    width: 950;        /* 幅を広げる */
-    margin: 30px auto 0 auto; /* 中央寄せはそのまま */
+    width: clamp(250px, 95%, 550px);
+    margin: 30px auto 0 auto;
   }
 }
 
@@ -172,14 +175,15 @@ main {
 .main-img {
   display: block;
   margin: 20px auto 0 auto;
-  width: 40%;
-  max-width: 100%; /* 幅が画面よりはみ出ないように */
+  width: clamp(320px, 45%, 640px); 
+  max-width: 100%;
   height: auto;
 
   opacity: 0;
   transform: translateY(70px);
   transition: opacity 1s ease, transform 1s ease;
 }
+
 
 @media (max-width: 768px) {
   .main-img {
@@ -452,7 +456,22 @@ transform: scale(1.08); /*1.8倍に拡大*/
    }
 
 
-   /* お問い合わせページ全体 */
+   /* お問い合わせページ */
+
+body.contact-page .header-image-wrapper {
+  height: 8vh;  /* PCのときの高さ調整（適宜7vh～9vhで調整可） */
+}
+
+@media (max-width: 768px) {
+  body.contact-page .header-image-wrapper {
+    height: 6vh;  /* スマホのときはもっと低くする */
+  }
+}
+
+
+
+
+
 .contact-page {
   padding: 100px 20px;
   background-color: #f9f9f9;
