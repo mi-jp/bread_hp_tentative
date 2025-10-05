@@ -196,52 +196,45 @@ header {
 .menu-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  max-width: 660px;
+  gap: 30px;
+  max-width: 800px;
   margin: 0 auto;
+  justify-items: center;
+  align-items: stretch; /* 縦方向の均一化 */
+}
+
+.menu-item-name {
+  width: 150px;
+  height: 40px;           /* 高さを統一 */
+  object-fit: contain;
+  display: block;
+  margin-top: 10px;
 }
 
 /* メニューアイテム画像 */
 .menu-item-img {
   width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
-  will-change: transform;
-  transform-origin: center center;
-  position: static;
-  top: auto;
-  left: auto;
+  max-height: 140px;  /* パン画像の高さを制限して揃える */
+  object-fit: contain;
+  display: block;
 }
 
-/* 画像の個別調整 */
-.menu-item-img.anpan {
-  width: 105%;
-  top: 0;
-  position: relative;
-}
 
-.menu-item-img.kurowassan {
-  width: 230px;
-  top: 17px;
-  position: relative;
-}
-
-.menu-item-img.kurumipan {
-  width: 96%;
-  top: 13px;
-  position: relative;
-}
 
 /* ホバーで拡大 */
 .menu-link:hover .menu-item-img {
   transform: scale(1.08);
 }
 
-/* メニューリンク */
 .menu-link {
-  display: inline-block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* 画像と名前の間隔を自動調整 */
+  height: 100%;
+  text-align: center;
 }
+
 
 /* ショップ情報セクション */
 .shop-info-section {
