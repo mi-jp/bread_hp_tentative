@@ -66,6 +66,20 @@ if (shopInfoSection) {
   window.addEventListener('scroll', checkScroll);
   checkScroll();
 
+  const headerImg = document.querySelector('.header-image');
+  const mainContent = document.querySelector('main');
+
+  function adjustMainPadding() {
+    if (headerImg && mainContent) {
+      const headerHeight = headerImg.clientHeight;
+      mainContent.style.paddingTop = `${headerHeight}px`;
+    }
+  }
+
+  // 初回読み込み時とリサイズ時に実行
+  window.addEventListener('load', adjustMainPadding);
+  window.addEventListener('resize', adjustMainPadding);
+
 
 
   const footerLogoLink = document.querySelector('.footer-logo-link');
