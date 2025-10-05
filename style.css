@@ -196,7 +196,7 @@ header {
 .menu-items {
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
-  grid-gap: 20px;
+  gap: 20px;  /* grid-gap → gap に変更 */
   max-width: 660px;
   margin: 0 auto;
   padding: 0 10px;
@@ -204,16 +204,27 @@ header {
 
 @media (max-width: 480px) {
   .menu-items {
-    grid-template-columns: repeat(3, minmax(80px, 1fr)); /* 3列のまま */
-    padding-left: 10px;
-    padding-right: 10px;
+    grid-template-columns: repeat(3, 1fr); /* minmaxを外して均等3列に */
     max-width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    gap: 10px;
   }
 
-  
+  .menu-link {
+    width: 100%;
+  }
+
   .menu-item-img {
-    width: 100%;    /* 画像は親の幅いっぱいに */
-    max-width: 100%;
+    width: 100%;
+    max-height: 140px;
+  }
+
+  .menu-item-name {
+    width: 100%;
+    margin-left: 0;
+    text-align: center; /* 名前を中央寄せにしてみる */
+    font-size: 14px;    /* 必要に応じて調整 */
   }
 }
 
