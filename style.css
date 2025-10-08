@@ -1,10 +1,11 @@
+/* --- リセット --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 全体のフォント・背景 */
+/* --- 全体のフォント・背景 --- */
 body {
   font-family: "Zen Maru Gothic", sans-serif;
   background-image: url("images/background.png");
@@ -13,13 +14,13 @@ body {
   width: auto;
 }
 
-/* ヘッダー */
+/* --- ヘッダー --- */
 header {
   position: relative;
   width: 100%;
 }
 
-/* ヘッダー画像*/
+/* ヘッダー画像 */
 .header-image-wrapper {
   width: 100%;
   position: fixed;
@@ -30,14 +31,12 @@ header {
 
 .header-image-wrapper img.header-image {
   width: 100%;
-  height: clamp(80px, 10vw, 110px); /* 最小100px、最大250px、理想15vw */
+  height: clamp(80px, 10vw, 110px);
   object-fit: cover;
   display: block;
 }
 
-
-
-/* ナビゲーションバー */
+/* --- ナビゲーションバー --- */
 .nav-bar {
   position: fixed;
   top: 0;
@@ -113,11 +112,10 @@ header {
   margin-left: 0;
 }
 
-/* メインテキスト */
-/* メインテキスト */
+/* --- メインテキスト --- */
 .main-text {
   opacity: 0;
-  transform: translateY(60px);  /* ← -60px → 60px に変更 */
+  transform: translateY(60px);
   transition: opacity 1s ease, transform 1s ease;
   width: clamp(300px, 40%, 600px);
   margin: 20px auto 0 auto;
@@ -128,7 +126,7 @@ header {
 @media (max-width: 768px) {
   .main-text {
     width: clamp(240px, 90%, 500px);
-    margin-top: 30px; /* 上すぎるのを解消 */
+    margin-top: 30px;
   }
   .main-img {
     width: clamp(250px, 95%, 550px);
@@ -142,34 +140,115 @@ header {
   transform: translateY(20px);
 }
 
-/* メイン画像 */
+.image-section {
+  padding: 40px 0;
+}
+
+.image-section img,
 .main-img {
-  display: block;
-  margin: 60px auto 0 auto;
-  width: clamp(320px, 80%, 800px);
-  max-width: 100%;
+  max-width: none;
+  width: 100%;
   height: auto;
-  opacity: 0;
-  transform: translateY(70px);
-  transition: opacity 1s ease, transform 1s ease;
+  border-radius: 8px; /* 角丸を残したい場合 */
+  box-shadow: none; /* シャドウを消す */
+  background-color: transparent; /* 背景を透明に */
+  transition: transform 0.3s ease;
 }
 
-/* メイン画像 768px以下 */
-@media (max-width: 768px) {
-  .main-img {
-    width: 90%;     /* 100%→90%に小さく */
-    max-width: 400px; /* 最大幅も制限 */
-    margin: 30px auto 0 auto; /* 余白調整も必要なら */
-  }
+.image-section img:hover,
+.main-img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
-/* メイン画像 アニメーション */
-.main-img.animate {
-  opacity: 1;
-  transform: translateY(0);
+/* --- カルーセルの基本レイアウト --- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-/* メニューセクション */
+.carousel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  flex: 0 0 calc(100% / 3); /* 3枚を均等に分ける */
+  padding: 0 6px; /* 両側に隙間（合計gap 12px） */
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* ボタン（前・次） */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  z-index: 10;
+
+  /* ▼ 追加・変更ポイント ▼ */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;       /* ← 丸くする */
+  font-size: 18px;           /* 中の矢印の大きさ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* 軽く立体感 */
+  transition: background 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: rgba(255, 255, 255, 1); /* ホバーで少し濃く */
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+/* ドットナビゲーション */
+.carousel-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.carousel-dots button {
+  border: none;
+  background: #ccc;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.carousel-dots button.active {
+  background: #333;
+}
+
+/* --- メニューセクション --- */
 .menu-section {
   padding-top: 0;
   text-align: center;
@@ -196,17 +275,18 @@ header {
 .menu-items {
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
-  gap: 20px;  /* grid-gap → gap に変更 */
+  gap: 20px;
   max-width: 660px;
   margin: 0 auto;
   padding: 0 10px;
 }
 
+/* 480px以下のスマホ対応 */
 @media (max-width: 480px) {
-    .menu-items {
+  .menu-items {
     max-width: 100%;
-    padding: 0 10px; /* paddingを少し増やしてみる */
-    gap: 8px;        /* gapも調整 */
+    padding: 0 10px;
+    gap: 8px;
     box-sizing: border-box;
     grid-template-columns: repeat(3, 1fr);
   }
@@ -223,14 +303,15 @@ header {
     object-fit: contain;
   }
 
- .menu-item-name {
+  .menu-item-name {
     width: 100% !important;
-    margin-left: 0 !important; 
+    margin-left: 0 !important;
     padding: 0 8px;
     text-align: center;
   }
 }
 
+/* メニューアイテム画像・名前 */
 .menu-item-img,
 .menu-item-name {
   max-width: 100%;
@@ -238,41 +319,37 @@ header {
   display: block;
 }
 
-
 .menu-item-name {
   width: 150px;
-  height: 40px;           /* 高さを統一 */
+  height: 40px;
   object-fit: contain;
   display: block;
   margin-top: 10px;
-  margin-left: 25px;      /* 右にずらす */
+  margin-left: 25px;
 }
 
-/*クロワッサンの名前だけ画像が小さいので、少し大きくする設定*/
+/* クロワッサンの名前だけ画像が小さいので少し大きく */
 .menu-item-name.kurowassan-name {
   width: 180px;
   height: auto;
-  margin-top: 30px; /* 下にスペースを作る */
+  margin-top: 30px;
   margin-left: 8px;
 }
-
-
 
 /* メニューアイテム画像 */
 .menu-item-img {
   width: 100%;
-  max-height: 140px;  /* パン画像の高さを制限して揃える */
+  max-height: 140px;
   object-fit: contain;
   display: block;
 }
-
-
 
 /* ホバーで拡大 */
 .menu-link {
   display: inline-block;
   width: 100%;
-   overflow: hidden;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .menu-link:hover .menu-item-img {
@@ -280,7 +357,7 @@ header {
   transition: transform 0.3s ease;
 }
 
-/* ショップ情報セクション */
+/* --- ショップ情報セクション --- */
 .shop-info-section {
   width: 50%;
   max-width: 490px;
@@ -295,7 +372,6 @@ header {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* ショップ情報セクション 768px以下 */
 @media (max-width: 768px) {
   .shop-info-section {
     width: 90%;
@@ -310,7 +386,20 @@ header {
   transform: translateY(0);
 }
 
-/* フッター */
+/* --- シェアアイコン --- */
+.share-icon {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.share-icon img {
+  width: 50px;
+  height: auto;
+}
+
+/* --- フッター --- */
 .footer {
   position: relative;
   width: 100%;
@@ -333,146 +422,31 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 3px;
   color: white;
   font-family: "Zen Maru Gothic", sans-serif;
   font-size: 16px;
-  pointer-events: auto;
+  text-shadow: 0 0 3px #000;
 }
 
 .footer-logo {
   width: 150px;
   height: auto;
+  margin-bottom: 8px;
 }
 
-/* お問い合わせページのヘッダー画像高さ調整 */
-body.contact-page .header-image-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 13vh; /* デフォルト高さ */
-  overflow: hidden;
-  z-index: 1000;
-}
-
-body.contact-page main {
-  padding-top: 100px; /* ヘッダー高さに合わせる */
-}
-
-body.contact-page .header-image-wrapper img.header-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* PC用 (768px以上) */
-@media (min-width: 768px) {
-  body.contact-page .header-image-wrapper {
-    height: 18vh;
-  }
-  body.contact-page main {
-    padding-top: 18vh;
-  }
-}
-
-/* 768px以下 (スマホなど) */
-@media (max-width: 767px) {
-  body.contact-page .header-image-wrapper {
-    height: 8vh; /* 10vhより小さくしたいならここを変更 */
-  }
-  body.contact-page main {
-    padding-top: 8vh;
-  }
-}
-
-
-  body.contact-page .header-image-wrapper img.header-image {
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-
-/* お問い合わせフォームのスタイル */
-
-body.contact-page main.contact-page {
-  max-width: 600px;
-  margin: 40px auto 80px;
-  padding: 0 20px;
-  box-sizing: border-box;
-  font-family: "Zen Maru Gothic", sans-serif;
-}
-
-.contact-section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.contact-section .sub-note {
-  font-size: 0.9rem;
-  color: #666;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 60%;      /* 幅を指定 */
-  max-width: 600px; /* 最大幅*/
-  margin: 0 auto;   /* 中央寄せ */
-}
-.contact-form label {
-  font-weight: bold;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  resize: vertical;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-  border-color: #007acc;
-  outline: none;
-}
-
-.contact-form button[type="submit"] {
-  padding: 12px 0;
-  font-size: 1.2rem;
-  background-color: #007acc;
+.footer-link {
   color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
-.contact-form button[type="submit"]:hover {
-  background-color: #005f99;
+.footer-link:hover {
+  text-decoration: underline;
 }
 
-@media (max-width: 480px) {
-  body.contact-page main.contact-page {
-    margin: 20px 10px 40px;
-  }
-  .contact-form button[type="submit"] {
-    font-size: 1rem;
-  }
+/* --- アニメーション用 --- */
+.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 1s ease, transform 1s ease;
 }
-
