@@ -90,48 +90,59 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".carousel-button.next");
   const dotsNav = document.querySelector(".carousel-dots");
 
-function getSlidesToShow() {
-  if (window.innerWidth <= 768) return 1;
-  return 3;
-}
-
-let slidesToShow = getSlidesToShow();
-
-
-  const slideCount = slides.length;
-  const slideWidth = () => slides[0].getBoundingClientRect().width;
-
-  // 1枚ずつスライドなので、インデックス範囲は [0, slideCount + clones]
-  // クローンは前後に3枚ずつ作る（見た目を保つため）
-  const prependSlides = slides.slice(-slidesToShow).map(slide => slide.cloneNode(true));
-  const appendSlides = slides.slice(0, slidesToShow).map(slide => slide.cloneNode(true));
-
-  prependSlides.forEach(clone => {
-    track.insertBefore(clone, track.firstChild);
-  });
-
-  appendSlides.forEach(clone => {
-    track.appendChild(clone);
-  });
-
-  const allSlides = Array.from(track.children);
-
-  let currentIndex = slidesToShow; // 実画像の最初のスライド位置
+  let slidesToShow = 3;
+  let currentIndex = 0;
   let isTransitioning = false;
+  let allSlides = [];
+
+  function getSlidesToShow() {
+    if (window.innerWidth <= 768) return 1;
+    return 3;
+  }
+
+  function clearClones() {
+    // 元のスライド以外（クローン）を削除
+    Array.from(track.children).forEach(child => {
+      if (!slides.includes(child)) {
+        track.removeChild(child);
+      }
+    });
+  }
+
+  function setupClones() {
+    clearClones();
+
+    slidesToShow = getSlidesToShow();
+
+    const prependSlides = slides.slice(-slidesToShow).map(slide => slide.cloneNode(true));
+    const appendSlides = slides.slice(0, slidesToShow).map(slide => slide.cloneNode(true));
+
+    prependSlides.forEach(clone => {
+      track.insertBefore(clone, track.firstChild);
+    });
+    appendSlides.forEach(clone => {
+      track.appendChild(clone);
+    });
+
+    allSlides = Array.from(track.children);
+
+    currentIndex = slidesToShow; // リセット
+  }
+
+  function slideWidth() {
+    return slides[0].getBoundingClientRect().width;
+  }
 
   function setInitialPosition() {
     const offset = slideWidth() * currentIndex;
+    track.style.transition = "none";
     track.style.transform = `translateX(-${offset}px)`;
   }
-  setInitialPosition();
 
-  // ドットはスライド数分（実画像の枚数）
-  for (let i = 0; i < slideCount; i++) {
-    const dot = document.createElement("button");
-    if (i === 0) dot.classList.add("active");
-    dotsNav.appendChild(dot);
+  function updateDots(activeIndex) {
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[activeIndex].classList.add("active");
   }
-  const dots = Array.from(dotsNav.children);
 
   function updateCarousel(index, withTransition = true) {
     const offset = slideWidth() * index;
@@ -141,22 +152,35 @@ let slidesToShow = getSlidesToShow();
       track.style.transition = "none";
     }
     track.style.transform = `translateX(-${offset}px)`;
-    updateDots((index - slidesToShow + slideCount) % slideCount);
+    updateDots((index - slidesToShow + slides.length) % slides.length);
   }
 
-  function updateDots(activeIndex) {
-    dots.forEach(dot => dot.classList.remove("active"));
-    dots[activeIndex].classList.add("active");
+  function createDots() {
+    dotsNav.innerHTML = "";
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement("button");
+      if (i === 0) dot.classList.add("active");
+      dotsNav.appendChild(dot);
+    }
   }
+
+  // 初期セットアップ
+  function initCarousel() {
+    setupClones();
+    createDots();
+    setInitialPosition();
+  }
+
+  initCarousel();
 
   track.addEventListener("transitionend", () => {
     isTransitioning = false;
-    if (currentIndex >= slideCount + slidesToShow) {
+    if (currentIndex >= slides.length + slidesToShow) {
       currentIndex = slidesToShow;
       updateCarousel(currentIndex, false);
     }
     if (currentIndex < slidesToShow) {
-      currentIndex = slideCount + slidesToShow - 1;
+      currentIndex = slides.length + slidesToShow - 1;
       updateCarousel(currentIndex, false);
     }
   });
@@ -175,25 +199,24 @@ let slidesToShow = getSlidesToShow();
     updateCarousel(currentIndex);
   });
 
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      currentIndex = slidesToShow + index;
-      updateCarousel(currentIndex);
-    });
+  dotsNav.addEventListener("click", (e) => {
+    if (e.target.tagName !== "BUTTON") return;
+    const index = Array.from(dotsNav.children).indexOf(e.target);
+    currentIndex = slidesToShow + index;
+    updateCarousel(currentIndex);
   });
 
-  // --- 自動スライド（1枚ずつ）
   let autoSlide = setInterval(() => {
     if (isTransitioning) return;
     isTransitioning = true;
     currentIndex++;
     updateCarousel(currentIndex);
-  }, 5000); // 5秒毎
+  }, 5000);
 
-  // --- マウスオーバーで自動スライド停止、離れたら再開（おまけ）
   track.parentElement.addEventListener("mouseenter", () => {
     clearInterval(autoSlide);
   });
+
   track.parentElement.addEventListener("mouseleave", () => {
     autoSlide = setInterval(() => {
       if (isTransitioning) return;
@@ -203,9 +226,17 @@ let slidesToShow = getSlidesToShow();
     }, 3000);
   });
 
-  // --- リサイズ対応
-window.addEventListener("resize", () => {
-  slidesToShow = getSlidesToShow();
-  updateCarousel(currentIndex, false);
-});
+  window.addEventListener("resize", () => {
+    // クローン再セットアップ、位置リセット
+    const prevSlidesToShow = slidesToShow;
+    const newSlidesToShow = getSlidesToShow();
+    if (prevSlidesToShow !== newSlidesToShow) {
+      setupClones();
+      createDots();
+      setInitialPosition();
+    } else {
+      // 表示枚数が変わってなければ位置だけ更新
+      updateCarousel(currentIndex, false);
+    }
+  });
 });
