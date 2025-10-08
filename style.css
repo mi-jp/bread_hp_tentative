@@ -270,9 +270,13 @@ main {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .menu-section {
-     margin-top: 40px !important;  /* ← スマホでだけ上に詰める */
+    margin-top: 40px !important;
+  }
+
+  .menu-title-img {
+    width: 180px !important;
   }
 }
 
@@ -290,11 +294,6 @@ main {
   margin-bottom: 30px;
 }
 
-@media (max-width: 480px) {
-  .menu-title-img {
-    width: 180px !important; 
-  }
-}
 
 
 
