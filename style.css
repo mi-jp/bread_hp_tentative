@@ -248,6 +248,28 @@ header {
   background: #333;
 }
 
+/*スマホで見たときの設定*/
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+  }
+
+  .carousel-track {
+    gap: 0; /* スマホでは隙間なしにしたければここも調整 */
+  }
+
+  .carousel-container {
+    padding: 0; /* スマホでは左右の余白をなくす */
+  }
+
+  .carousel-track {
+    margin-left: 0;  /* デスクトップでの-12px調整を打ち消す */
+    width: 100%;     /* 幅を100%に */
+  }
+}
+
+
+
 /* --- メニューセクション --- */
 .menu-section {
   padding-top: 0;
