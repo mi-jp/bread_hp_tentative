@@ -149,7 +149,7 @@ header {
   max-width: none;
   width: 100%;
   height: auto;
-  border-radius: 8px; /* 角丸を残したい場合 */
+  border-radius: 8px; /* 角丸を*/
   box-shadow: none; /* シャドウを消す */
   background-color: transparent; /* 背景を透明に */
   transition: transform 0.3s ease;
@@ -204,7 +204,7 @@ header {
   cursor: pointer;
   z-index: 10;
 
-  /* ▼ 追加・変更ポイント ▼ */
+  /* ▼ 追加・変更 ▼ */
   width: 40px;
   height: 40px;
   border-radius: 50%;       /* ← 丸くする */
