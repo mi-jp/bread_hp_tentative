@@ -269,6 +269,15 @@ main {
   scroll-margin-top: unset;
 }
 
+
+@media (max-width: 480px) {
+  .menu-section {
+    margin-top: 40px; /* ← スマホでだけ上に詰める */
+  }
+}
+
+
+
 .menu-section.show {
   opacity: 1;
   transform: translateY(0);
@@ -280,6 +289,14 @@ main {
   height: auto;
   margin-bottom: 30px;
 }
+
+@media (max-width: 480px) {
+  .menu-title-img {
+    width: 180px;
+  }
+}
+
+
 
 /* メニューアイテムのグリッド */
 .menu-items {
