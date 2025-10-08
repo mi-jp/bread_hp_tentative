@@ -272,7 +272,7 @@ main {
 
 @media (max-width: 480px) {
   .menu-section {
-    margin-top: 40px; /* ← スマホでだけ上に詰める */
+     margin-top: 40px !important;  /* ← スマホでだけ上に詰める */
   }
 }
 
@@ -292,7 +292,7 @@ main {
 
 @media (max-width: 480px) {
   .menu-title-img {
-    width: 180px;
+    width: 180px !important; 
   }
 }
 
