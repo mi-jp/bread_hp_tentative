@@ -90,7 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".carousel-button.next");
   const dotsNav = document.querySelector(".carousel-dots");
 
-  const slidesToShow = 3; // 常に3枚見える
+function getSlidesToShow() {
+  if (window.innerWidth <= 768) return 1;
+  return 3;
+}
+
+let slidesToShow = getSlidesToShow();
+
+
   const slideCount = slides.length;
   const slideWidth = () => slides[0].getBoundingClientRect().width;
 
@@ -197,7 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- リサイズ対応
-  window.addEventListener("resize", () => {
-    updateCarousel(currentIndex, false);
-  });
+window.addEventListener("resize", () => {
+  slidesToShow = getSlidesToShow();
+  updateCarousel(currentIndex, false);
+});
 });
