@@ -120,6 +120,7 @@ header {
   width: clamp(300px, 40%, 600px);
   margin: 20px auto 0 auto;
   display: block;
+    margin-top: 120px; 
 }
 
 /* メインテキスト 768px以下 */
@@ -143,6 +144,13 @@ header {
 .image-section {
   padding: 40px 0;
 }
+
+
+main {
+  padding-top: 180px; /* ← ここで全体を下げる */
+}
+
+
 
 .image-section img,
 .main-img {
@@ -254,7 +262,7 @@ header {
 .menu-section {
   padding-top: 0;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 100px;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 2s ease, transform 2s ease;
@@ -341,7 +349,7 @@ header {
 /* メニューアイテム画像 */
 .menu-item-img {
   width: 100%;
-  max-height: 140px;
+  max-height: 300px;
   object-fit: contain;
   display: block;
 }
@@ -554,5 +562,23 @@ header {
   .contact-section {
     margin: 20px 15px;
     padding: 15px;
+  }
+}
+
+
+@media (min-width: 481px) {
+  .menu-item-img {
+    max-height: 260px !important;  /* ← ここを調整（例：260px） */
+  }
+}
+
+
+@media (min-width: 769px) {
+  .menu-item-img {
+    max-height: 400px !important;
+  }
+
+  .menu-items {
+    max-width: 900px;
   }
 }
